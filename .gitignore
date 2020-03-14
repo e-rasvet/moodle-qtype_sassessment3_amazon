@@ -94,9 +94,9 @@ fabric.properties
 .DS_Store
 .idea/deployment.xml
 .idea/modules.xml
-.idea/moodle-qtype_sassessmentamazon.iml
+.idea/moodle-qtype_sassessmentamz.iml
 .idea/vcs.xml
 .idea/webServers.xml
 .idea/misc.xml
-.idea/moodle-qtype_sassessment.iml
-.idea/moodle-qtype_sassessment3_amazon.iml
+.idea/moodle-qtype_sassessmentamz.iml
+.idea/moodle-qtype_sassessmentamz3_amazon.iml

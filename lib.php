@@ -18,7 +18,7 @@
  * Serve question type files
  *
  * @since      2.0
- * @package    qtype_sassessmentamazon
+ * @package    qtype_sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -29,8 +29,8 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * Checks file access for sassessmentamazon questions.
- * @package  qtype_sassessmentamazon
+ * Checks file access for sassessmentamz questions.
+ * @package  qtype_sassessmentamz
  * @category files
  * @param stdClass $course course object
  * @param stdClass $cm course module object
@@ -41,10 +41,10 @@ defined('MOODLE_INTERNAL') || die();
  * @param array $options additional options affecting the file serving
  * @return bool
  */
-function qtype_sassessmentamazon_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
+function qtype_sassessmentamz_pluginfile($course, $cm, $context, $filearea, $args, $forcedownload, array $options=array()) {
     global $DB, $CFG;
     require_once($CFG->libdir . '/questionlib.php');
-    question_pluginfile($course, $context, 'qtype_sassessmentamazon', $filearea, $args, $forcedownload, $options);
+    question_pluginfile($course, $context, 'qtype_sassessmentamz', $filearea, $args, $forcedownload, $options);
 }
 
 /**
@@ -53,7 +53,7 @@ function qtype_sassessmentamazon_pluginfile($course, $cm, $context, $filearea, $
  * @param bool $get
  * @return array
  */
-function qtype_sassessmentamazon_compare_answer($ans, $qid, $get = true) {
+function qtype_sassessmentamz_compare_answer($ans, $qid, $get = true) {
   global $DB, $CFG;
 
   $maxp = 0;
@@ -63,13 +63,13 @@ function qtype_sassessmentamazon_compare_answer($ans, $qid, $get = true) {
   $allSampleResponses = "";
 
   if ($sampleresponses = $DB->get_records('question_answers', array('question' => $qid))) {
-      $questionOptions = $DB->get_records('qtype_sassessmentamazon_options', array('questionid' => $qid));
+      $questionOptions = $DB->get_records('qtype_sassessmentamz_options', array('questionid' => $qid));
 
       foreach ($sampleresponses as $k => $sampleresponse) {
           $allSampleResponses .= $sampleresponse->answer."\n";
 
-          $percent = qtype_sassessmentamazon_similar_text($sampleresponse->answer, $ans, $questionOptions->speechtotextlang);
-          $percentOrig = qtype_sassessmentamazon_similar_text_original($sampleresponse->answer, $ans, $questionOptions->speechtotextlang);
+          $percent = qtype_sassessmentamz_similar_text($sampleresponse->answer, $ans, $questionOptions->speechtotextlang);
+          $percentOrig = qtype_sassessmentamz_similar_text_original($sampleresponse->answer, $ans, $questionOptions->speechtotextlang);
           $totalPercent = round (($percent + $percentOrig) / 2, 2);
 
           if ($maxp < $totalPercent) {
@@ -119,7 +119,7 @@ function qtype_sassessmentamazon_compare_answer($ans, $qid, $get = true) {
  * @param string $lang
  * @return float|mixed
  */
-function qtype_sassessmentamazon_similar_text($text1, $text2, $lang = "en"){
+function qtype_sassessmentamz_similar_text($text1, $text2, $lang = "en"){
 
     $text1 = strip_tags($text1);
     $text2 = strip_tags($text2);
@@ -136,7 +136,7 @@ function qtype_sassessmentamazon_similar_text($text1, $text2, $lang = "en"){
 
 
     if (strstr($lang, "en")) {
-        $res = qtype_sassessmentamazon_cmp_phon($text1, $text2);
+        $res = qtype_sassessmentamz_cmp_phon($text1, $text2);
         $percent = $res['percent'];
     } else {
         $sim = similar_text($text1, $text2, $percent);
@@ -154,7 +154,7 @@ function qtype_sassessmentamazon_similar_text($text1, $text2, $lang = "en"){
  * @param string $lang
  * @return float|mixed
  */
-function qtype_sassessmentamazon_similar_text_original($text1, $text2, $lang = "en"){
+function qtype_sassessmentamz_similar_text_original($text1, $text2, $lang = "en"){
 
     $text1 = strip_tags($text1);
     $text2 = strip_tags($text2);
@@ -168,7 +168,7 @@ function qtype_sassessmentamazon_similar_text_original($text1, $text2, $lang = "
 
 
     if ($lang == "en") {
-        $res = qtype_sassessmentamazon_cmp_phon($text1, $text2);
+        $res = qtype_sassessmentamz_cmp_phon($text1, $text2);
         $percent = $res['percent'];
     } else {
         $sim = similar_text($text1, $text2, $percent);
@@ -185,11 +185,11 @@ function qtype_sassessmentamazon_similar_text_original($text1, $text2, $lang = "
  * @param $target
  * @return array
  */
-function qtype_sassessmentamazon_cmp_phon($spoken, $target){
+function qtype_sassessmentamz_cmp_phon($spoken, $target){
     global $CFG;
 
     if (!isset($CFG->pron_dict_loaded)) {
-        $lines = explode("\n",file_get_contents($CFG->dirroot . '/question/type/sassessmentamazon/pron-dict.txt'));
+        $lines = explode("\n",file_get_contents($CFG->dirroot . '/question/type/sassessmentamz/pron-dict.txt'));
 
         $pron_dict = array();
 
@@ -290,7 +290,7 @@ function qtype_sassessmentamazon_cmp_phon($spoken, $target){
  * @param $text
  * @return array
  */
-function qtype_sassessmentamazon_printanalizeform($text) {
+function qtype_sassessmentamz_printanalizeform($text) {
     $data = Array ();
 
     $text = strip_tags ($text);
@@ -309,17 +309,17 @@ function qtype_sassessmentamazon_printanalizeform($text) {
         );
     }
 
-    $data['wordcount'] = qtype_sassessmentamazon_wordcount($text);
-    $data['worduniquecount'] = qtype_sassessmentamazon_worduniquecount ($text);
-    $data['numberofsentences'] = qtype_sassessmentamazon_numberofsentences ($text);
+    $data['wordcount'] = qtype_sassessmentamz_wordcount($text);
+    $data['worduniquecount'] = qtype_sassessmentamz_worduniquecount ($text);
+    $data['numberofsentences'] = qtype_sassessmentamz_numberofsentences ($text);
     if ($data['numberofsentences'] == 0 || empty($data['numberofsentences'])) {
         $data['numberofsentences'] = 1;
     }
-    $data['averagepersentence'] = qtype_sassessmentamazon_averagepersentence ($text, $data['wordcount'], $data['numberofsentences']);
-    list ($data['hardwords'], $data['hardwordspersent']) = qtype_sassessmentamazon_hardwords ($text, $data['wordcount']);
-    $data['lexicaldensity'] = qtype_sassessmentamazon_lexicaldensity ($text, $data['wordcount'], $data['worduniquecount']);
-    $data['fogindex'] = qtype_sassessmentamazon_fogindex ($text, $data['averagepersentence'], $data['hardwordspersent']);
-    $data['laters'] = qtype_sassessmentamazon_laters ($text);
+    $data['averagepersentence'] = qtype_sassessmentamz_averagepersentence ($text, $data['wordcount'], $data['numberofsentences']);
+    list ($data['hardwords'], $data['hardwordspersent']) = qtype_sassessmentamz_hardwords ($text, $data['wordcount']);
+    $data['lexicaldensity'] = qtype_sassessmentamz_lexicaldensity ($text, $data['wordcount'], $data['worduniquecount']);
+    $data['fogindex'] = qtype_sassessmentamz_fogindex ($text, $data['averagepersentence'], $data['hardwordspersent']);
+    $data['laters'] = qtype_sassessmentamz_laters ($text);
 
     return $data;
 }
@@ -329,7 +329,7 @@ function qtype_sassessmentamazon_printanalizeform($text) {
  * @param $text
  * @return mixed
  */
-function qtype_sassessmentamazon_wordcount ($text) {
+function qtype_sassessmentamz_wordcount ($text) {
     return str_word_count ($text);
 }
 
@@ -338,7 +338,7 @@ function qtype_sassessmentamazon_wordcount ($text) {
  * @param $text
  * @return int
  */
-function qtype_sassessmentamazon_worduniquecount ($text) {
+function qtype_sassessmentamz_worduniquecount ($text) {
     $words  = str_word_count ($text, 1);
     $words_ = Array ();
 
@@ -355,7 +355,7 @@ function qtype_sassessmentamazon_worduniquecount ($text) {
  * @param $text
  * @return int
  */
-function qtype_sassessmentamazon_numberofsentences ($text) {
+function qtype_sassessmentamz_numberofsentences ($text) {
     $text = strip_tags ($text);
     $noneed = array ("\r", "\n", ".0", ".1", ".2", ".3", ".4", ".5", ".6", ".7", ".8", ".9");
     foreach ($noneed as $noneed_) {
@@ -381,7 +381,7 @@ function qtype_sassessmentamazon_numberofsentences ($text) {
  * @param $sentences
  * @return float|int
  */
-function qtype_sassessmentamazon_averagepersentence ($text, $words, $sentences) {
+function qtype_sassessmentamz_averagepersentence ($text, $words, $sentences) {
     if ($sentences == 0 || empty($sentences)) {
         return 0;
     }
@@ -396,7 +396,7 @@ function qtype_sassessmentamazon_averagepersentence ($text, $words, $sentences) 
  * @param $wordunic
  * @return float|int
  */
-function qtype_sassessmentamazon_lexicaldensity ($text, $word, $wordunic) {
+function qtype_sassessmentamz_lexicaldensity ($text, $word, $wordunic) {
     if ($word == 0 || empty($word)) {
         return 0;
     }
@@ -411,7 +411,7 @@ function qtype_sassessmentamazon_lexicaldensity ($text, $word, $wordunic) {
  * @param $hardwordspersent
  * @return float
  */
-function qtype_sassessmentamazon_fogindex ($text, $averagepersentence, $hardwordspersent) {
+function qtype_sassessmentamz_fogindex ($text, $averagepersentence, $hardwordspersent) {
     $count = round(($averagepersentence + $hardwordspersent) * 0.4, 2);
     return $count;
 }
@@ -421,7 +421,7 @@ function qtype_sassessmentamazon_fogindex ($text, $averagepersentence, $hardword
  * @param $text
  * @return array
  */
-function qtype_sassessmentamazon_laters ($text) {
+function qtype_sassessmentamz_laters ($text) {
     $words  = str_word_count ($text, 1);
     $words_ = array();
     $result = array();
@@ -456,11 +456,11 @@ function qtype_sassessmentamazon_laters ($text) {
  * @param $wordstotal
  * @return array
  */
-function qtype_sassessmentamazon_hardwords($text, $wordstotal) {
+function qtype_sassessmentamz_hardwords($text, $wordstotal) {
     $syllables = 0;
     $words = explode(' ', $text);
     for ($i = 0; $i < count($words); $i++) {
-        if (qtype_sassessmentamazon_count_syllables($words[$i]) > 2) {
+        if (qtype_sassessmentamz_count_syllables($words[$i]) > 2) {
             $syllables ++;
         }
     }
@@ -478,7 +478,7 @@ function qtype_sassessmentamazon_hardwords($text, $wordstotal) {
  * @param $word
  * @return float|int
  */
-function qtype_sassessmentamazon_count_syllables($word) {
+function qtype_sassessmentamz_count_syllables($word) {
     $nos = strtoupper($word);
     $syllables = 0;
     $before = strlen($nos);

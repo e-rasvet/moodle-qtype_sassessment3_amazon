@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * sassessmentamazon question settings.
+ * sassessmentamz question settings.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -32,8 +32,8 @@ if ($ADMIN->fulltree) {
         "fr-CA" => "Canadian French (fr-CA)", "fr-FR" => "French (fr-FR)",
         "es-US" => "US Spanish (es-US)");
 
-    $settings->add(new admin_setting_configselect('qtype_sassessmentamazon/speechtotextlang',
-        new lang_string('speechtotextlang', 'qtype_sassessmentamazon'),
+    $settings->add(new admin_setting_configselect('qtype_sassessmentamz/speechtotextlang',
+        new lang_string('speechtotextlang', 'qtype_sassessmentamz'),
         '', 'en-US', $speechtotextlang));
 
 
@@ -41,14 +41,14 @@ if ($ADMIN->fulltree) {
         "ap-southeast-2" => "Asia Pacific (Sydney)", "ca-central-1" => "Canada (Central)",
         "eu-west-1" => "EU (Ireland)");
 
-    $settings->add(new admin_setting_configselect('qtype_sassessmentamazon/amazon_region',
-        new lang_string('amazon_region', 'qtype_sassessmentamazon'),
+    $settings->add(new admin_setting_configselect('qtype_sassessmentamz/amazon_region',
+        new lang_string('amazon_region', 'qtype_sassessmentamz'),
         '', 'ap-southeast-2', $amazon_region));
 
-    $settings->add(new admin_setting_configtext('qtype_sassessmentamazon/amazon_accessid',
-        get_string('amazon_accessid', 'qtype_sassessmentamazon'), '', '', PARAM_TEXT));
+    $settings->add(new admin_setting_configtext('qtype_sassessmentamz/amazon_accessid',
+        get_string('amazon_accessid', 'qtype_sassessmentamz'), '', '', PARAM_TEXT));
 
-    $settings->add(new admin_setting_configtext('qtype_sassessmentamazon/amazon_secretkey',
-        get_string('amazon_secretkey', 'qtype_sassessmentamazon'), '', '', PARAM_TEXT));
+    $settings->add(new admin_setting_configtext('qtype_sassessmentamz/amazon_secretkey',
+        get_string('amazon_secretkey', 'qtype_sassessmentamz'), '', '', PARAM_TEXT));
 
 }

@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * sassessmentamazon question type version information.
+ * sassessmentamz question type version information.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'qtype_sassessmentamazon';
+$plugin->component = 'qtype_sassessmentamz';
 $plugin->version   = 2020021300;
 
 $plugin->requires  = 2017111300; // Moodle 3.4

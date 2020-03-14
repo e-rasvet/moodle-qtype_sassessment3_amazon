@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Question type class for the sassessmentamazon question type.
+ * Question type class for the sassessmentamz question type.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -29,24 +29,24 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/questionlib.php');
 require_once($CFG->dirroot . '/question/engine/lib.php');
-require_once($CFG->dirroot . '/question/type/sassessmentamazon/question.php');
+require_once($CFG->dirroot . '/question/type/sassessmentamz/question.php');
 
 
 /**
- * The sassessmentamazon question type.
+ * The sassessmentamz question type.
  *
  * @copyright  THEYEAR YOURNAME (YOURCONTACTINFO)
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_sassessmentamazon extends question_type {
+class qtype_sassessmentamz extends question_type {
 
     /**
      * data used by export_to_xml (among other things possibly
      * @return array
      */
     public function extra_question_fields() {
-        return array('qtype_sassessmentamazon_options', 'show_transcript', 'save_stud_audio', 'show_analysis', 'speechtotextlang');
+        return array('qtype_sassessmentamz_options', 'show_transcript', 'save_stud_audio', 'show_analysis', 'speechtotextlang');
     }
 
     public function move_files($questionid, $oldcontextid, $newcontextid) {
@@ -63,7 +63,7 @@ class qtype_sassessmentamazon extends question_type {
 
     public function get_question_options($question) {
         global $DB;
-        $question->options = $DB->get_record('qtype_sassessmentamazon_options',
+        $question->options = $DB->get_record('qtype_sassessmentamz_options',
                 array('questionid' => $question->id), '*', MUST_EXIST);
         parent::get_question_options($question);
     }
@@ -76,14 +76,14 @@ class qtype_sassessmentamazon extends question_type {
         $this->save_question_answers($formdata);
 
         {
-          $options = $DB->get_record('qtype_sassessmentamazon_options', array('questionid' => $formdata->id));
+          $options = $DB->get_record('qtype_sassessmentamz_options', array('questionid' => $formdata->id));
           if (!$options) {
               $options = new stdClass();
               $options->questionid = $formdata->id;
               $options->correctfeedback = '';
               $options->partiallycorrectfeedback = '';
               $options->incorrectfeedback = '';
-              $options->id = $DB->insert_record('qtype_sassessmentamazon_options', $options);
+              $options->id = $DB->insert_record('qtype_sassessmentamz_options', $options);
           }
 
           $options->show_transcript = (int)$formdata->show_transcript;
@@ -95,7 +95,7 @@ class qtype_sassessmentamazon extends question_type {
 
           $options = $this->save_combined_feedback_helper($options, $formdata, $context, true);
 
-          $DB->update_record('qtype_sassessmentamazon_options', $options);
+          $DB->update_record('qtype_sassessmentamz_options', $options);
         }
     }
 
@@ -115,7 +115,7 @@ class qtype_sassessmentamazon extends question_type {
     public function delete_question($questionid, $contextid) {
         global $DB;
 
-        $DB->delete_records('qtype_sassessmentamazon_options', array('questionid' => $questionid));
+        $DB->delete_records('qtype_sassessmentamz_options', array('questionid' => $questionid));
         parent::delete_question($questionid, $contextid);
     }
 
@@ -137,8 +137,8 @@ class qtype_sassessmentamazon extends question_type {
 
     public function feedback_types() {
         return array(
-            'percent' => get_string('percent_score', 'qtype_sassessmentamazon'),
-            'points' => get_string('points_score', 'qtype_sassessmentamazon'),
+            'percent' => get_string('percent_score', 'qtype_sassessmentamz'),
+            'points' => get_string('points_score', 'qtype_sassessmentamz'),
         );
     }
 
@@ -153,7 +153,7 @@ class qtype_sassessmentamazon extends question_type {
      * @return boolean
      */
     public function import_from_xml($data, $question, qformat_xml $format, $extra = null) {
-        if (!isset($data['@']['type']) || $data['@']['type'] != 'sassessmentamazon') {
+        if (!isset($data['@']['type']) || $data['@']['type'] != 'sassessmentamz') {
             return false;
         }
         $question = parent::import_from_xml($data, $question, $format, null);
@@ -161,8 +161,8 @@ class qtype_sassessmentamazon extends question_type {
         $format->import_hints($question, $data, true, false, $format->get_format($question->questiontextformat));
         $question->isimport = true;
         $question->itemsettings = [];
-        if (isset($data['#']['sassessmentamazonsetting'])) {
-            foreach ($data['#']['sassessmentamazonsetting'] as $key => $setxml) {
+        if (isset($data['#']['sassessmentamzsetting'])) {
+            foreach ($data['#']['sassessmentamzsetting'] as $key => $setxml) {
                 $question->itemsettings[$key]['show_transcript'] = $format->getpath($setxml, array('#', 'show_transcript', 0, '#'), 0);
                 $question->itemsettings[$key]['save_stud_audio'] = $format->getpath($setxml, array('#', 'save_stud_audio', 0, '#'), 0);
                 $question->itemsettings[$key]['show_analysis'] = $format->getpath($setxml, array('#', 'show_analysis', 0, '#'), 0);
@@ -195,7 +195,7 @@ class qtype_sassessmentamazon extends question_type {
 
         $output = parent::export_to_xml($question, $format);
         foreach ($question->options->itemsettings as $set) {
-            $output .= "      <sassessmentamazonsetting>\n";
+            $output .= "      <sassessmentamzsetting>\n";
             $output .= '        <show_transcript>' . $set->show_transcript . "</show_transcript>\n";
             $output .= '        <save_stud_audio>' . $set->save_stud_audio . "</save_stud_audio>\n";
             $output .= '        <show_analysis>' . $set->show_analysis . "</show_analysis>\n";
@@ -207,7 +207,7 @@ class qtype_sassessmentamazon extends question_type {
             $output .= '        <incorrectfeedbackformat>' . $set->incorrectfeedbackformat . "</incorrectfeedbackformat>\n";
             $output .= '        <speechtotextlang>' . $set->speechtotextlang . "</speechtotextlang>\n";
             $output .= '        <fb_type>' . $set->fb_type . "</fb_type>\n";
-            $output .= "     </sassessmentamazonsetting>\n";
+            $output .= "     </sassessmentamzsetting>\n";
         }
         $output .= $format->write_combined_feedback($question->options, $question->id, $question->contextid);
         return $output;

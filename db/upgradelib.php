@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Upgrade library code for the sassessmentamazon question type.
+ * Upgrade library code for the sassessmentamz question type.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -28,7 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * Class for converting attempt data for sassessmentamazon questions when upgrading
+ * Class for converting attempt data for sassessmentamz questions when upgrading
  * attempts to the new question engine.
  *
  * This class is used by the code in question/engine/upgrade/upgradelib.php.
@@ -36,7 +36,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2018 Kochi-Tech.ac.jp
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_sassessmentamazon_qe2_attempt_updater extends question_qtype_attempt_updater {
+class qtype_sassessmentamz_qe2_attempt_updater extends question_qtype_attempt_updater {
     public function right_answer() {
         return '';
     }

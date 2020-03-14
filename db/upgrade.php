@@ -18,7 +18,7 @@
  * Essay question type upgrade code.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -26,10 +26,10 @@
 defined('MOODLE_INTERNAL') || die();
 
 /**
- * Upgrade code for the sassessmentamazon question type.
+ * Upgrade code for the sassessmentamz question type.
  * @param int $oldversion the version we are upgrading from.
  */
-function xmldb_qtype_sassessmentamazon_upgrade($oldversion) {
+function xmldb_qtype_sassessmentamz_upgrade($oldversion) {
     global $CFG, $DB;
 
     $dbman = $DB->get_manager();
@@ -40,21 +40,21 @@ function xmldb_qtype_sassessmentamazon_upgrade($oldversion) {
 
 /*
     if ($oldversion < 2020021200) {
-        $table = new xmldb_table('qtype_sassessmentamazon_options');
+        $table = new xmldb_table('qtype_sassessmentamz_options');
 
         $field = new xmldb_field('amazon_language', XMLDB_TYPE_CHAR, '60', null,  XMLDB_NOTNULL, null, 'en-US', 'incorrectfeedbackformat');
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
 
-        upgrade_plugin_savepoint(true, 2020021200, 'qtype', 'sassessmentamazon');
+        upgrade_plugin_savepoint(true, 2020021200, 'qtype', 'sassessmentamz');
     }
 */
 
 
 
     if ($oldversion < 2019041800) {
-        $table = new xmldb_table('qtype_sassessmentamazon_options');
+        $table = new xmldb_table('qtype_sassessmentamz_options');
 
         $field = new xmldb_field('correctfeedback', XMLDB_TYPE_TEXT, 'small', null, null, null, null);
         if (!$dbman->field_exists($table, $field)) {
@@ -86,20 +86,20 @@ function xmldb_qtype_sassessmentamazon_upgrade($oldversion) {
             $dbman->add_field($table, $field);
         }
 
-        upgrade_plugin_savepoint(true, 2019041800, 'qtype', 'sassessmentamazon');
+        upgrade_plugin_savepoint(true, 2019041800, 'qtype', 'sassessmentamz');
 
     }
 
 
     if ($oldversion < 2019091800) {
-        $table = new xmldb_table('qtype_sassessmentamazon_options');
+        $table = new xmldb_table('qtype_sassessmentamz_options');
 
         $field = new xmldb_field('speechtotextlang', XMLDB_TYPE_CHAR, '10', null,  XMLDB_NOTNULL, null, 'en', 'incorrectfeedbackformat');
         if (!$dbman->field_exists($table, $field)) {
             $dbman->add_field($table, $field);
         }
 
-        upgrade_plugin_savepoint(true, 2019091800, 'qtype', 'sassessmentamazon');
+        upgrade_plugin_savepoint(true, 2019091800, 'qtype', 'sassessmentamz');
     }
 
 

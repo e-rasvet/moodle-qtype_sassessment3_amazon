@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Question type class for the sassessmentamazon question type.
+ * Question type class for the sassessmentamz question type.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -27,14 +27,14 @@
 defined('MOODLE_INTERNAL') || die();
 
 
-class restore_qtype_sassessmentamazon_plugin extends restore_qtype_plugin {
+class restore_qtype_sassessmentamz_plugin extends restore_qtype_plugin {
     /**
      * Returns the qtype name.
      *
      * @return string The type name
      */
     protected static function qtype_name() {
-        return 'sassessmentamazon';
+        return 'sassessmentamz';
     }
 
     /**
@@ -48,17 +48,17 @@ class restore_qtype_sassessmentamazon_plugin extends restore_qtype_plugin {
         $this->add_question_question_answers($paths);
 
         // Add own qtype stuff.
-        $paths[] = new restore_path_element(self::qtype_name(), $this->get_pathfor('/sassessmentamazon'));
+        $paths[] = new restore_path_element(self::qtype_name(), $this->get_pathfor('/sassessmentamz'));
 
         return $paths;
     }
 
     /**
-     * Process the qtype/sassessmentamazon element
+     * Process the qtype/sassessmentamz element
      *
      * @param array $data
      */
-    public function process_sassessmentamazon($data) {
+    public function process_sassessmentamz($data) {
         global $DB;
 
         $data = (object)$data;
@@ -70,12 +70,12 @@ class restore_qtype_sassessmentamazon_plugin extends restore_qtype_plugin {
         $newquestionid   = $this->get_new_parentid('question');
 
         // If the question has been created by restore,
-        // we need to create a "qtype_sassessmentamazon_options" record
+        // we need to create a "qtype_sassessmentamz_options" record
         // and create a mapping from the $oldid to the $newid.
         if ($this->get_mappingid('question_created', $oldquestionid)) {
             $data->questionid = $newquestionid;
-            $newid = $DB->insert_record('qtype_sassessmentamazon_options', $data);
-            $this->set_mapping('qtype_sassessmentamazon_options', $oldid, $newid);
+            $newid = $DB->insert_record('qtype_sassessmentamz_options', $data);
+            $this->set_mapping('qtype_sassessmentamz_options', $oldid, $newid);
         }
     }
 }

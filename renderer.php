@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * sassessmentamazon question renderer class.
+ * sassessmentamz question renderer class.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -30,13 +30,13 @@ defined('MOODLE_INTERNAL') || die();
 require_once(dirname(__FILE__) . '/lib.php');
 
 /**
- * Generates the output for sassessmentamazon questions.
+ * Generates the output for sassessmentamz questions.
  *
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_sassessmentamazon_renderer extends qtype_renderer {
+class qtype_sassessmentamz_renderer extends qtype_renderer {
     public function formulation_and_controls(question_attempt $qa,
                                              question_display_options $options) {
         global $USER, $CFG, $PAGE, $OUTPUT, $DB;
@@ -167,7 +167,7 @@ class qtype_sassessmentamazon_renderer extends qtype_renderer {
                 /*
                  * Disable target response
                  */
-/*                $result .= html_writer::tag('label', get_string('targetresponse', 'qtype_sassessmentamazon',
+/*                $result .= html_writer::tag('label', get_string('targetresponse', 'qtype_sassessmentamz',
                 $sampleResponses . html_writer::tag('span', $input, array('class' => 'answer'))),
                     array('for' => $inputattributes['id'], 'style' => $answerDisplayStatus)); */
                 $result .= html_writer::tag('label', html_writer::tag('span', $input, array('class' => 'answer')),
@@ -177,7 +177,7 @@ class qtype_sassessmentamazon_renderer extends qtype_renderer {
             }
         }
 
-        $config = get_config('qtype_sassessmentamazon');
+        $config = get_config('qtype_sassessmentamz');
 
         $itemid = $qa->prepare_response_files_draft_itemid('attachments', $options->context->id);
         if (!$options->readonly) {
@@ -212,7 +212,7 @@ class qtype_sassessmentamazon_renderer extends qtype_renderer {
                 'audioname' => $audioname,
             );
 
-            $btn = html_writer::tag('button', get_string("startrecording", 'qtype_sassessmentamazon'), $btnattributes);
+            $btn = html_writer::tag('button', get_string("startrecording", 'qtype_sassessmentamz'), $btnattributes);
             $audio = html_writer::empty_tag('audio', array('src' => ''));
 
             $result .= html_writer::start_tag('div', array('class' => 'ablock'));
@@ -227,8 +227,8 @@ class qtype_sassessmentamazon_renderer extends qtype_renderer {
             $result .= html_writer::end_tag('div');
 
             $result .= html_writer::script(null, "https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js");
-            $result .= html_writer::script(null, new moodle_url('/question/type/sassessmentamazon/js/lame.js?32'));
-            $result .= html_writer::script(null, new moodle_url('/question/type/sassessmentamazon/js/main.js?32'));
+            $result .= html_writer::script(null, new moodle_url('/question/type/sassessmentamz/js/lame.js?32'));
+            $result .= html_writer::script(null, new moodle_url('/question/type/sassessmentamz/js/main.js?32'));
         }
         else {
             $files = $qa->get_last_qt_files('attachments', $options->context->id);
@@ -269,9 +269,9 @@ class qtype_sassessmentamazon_renderer extends qtype_renderer {
                 $result .= html_writer::start_tag('div', array('class' => 'ablock form-inline'));
 
                 //echo "<pre>";
-                //print_r (qtype_sassessmentamazon_cmp_phon("", "how are you how are you"));
+                //print_r (qtype_sassessmentamz_cmp_phon("", "how are you how are you"));
 
-                $result .= html_writer::tag('label', get_string('score', 'qtype_sassessmentamazon',
+                $result .= html_writer::tag('label', get_string('score', 'qtype_sassessmentamz',
                     html_writer::tag('span', $input, array('class' => 'answer'))),
                     array('for' => $inputattributes['id'], 'style'=>$gradeDisplayStatus));
                 $result .= html_writer::end_tag('div');
@@ -370,7 +370,7 @@ require(["jquery"], function(min) {
 
         $question = $qa->get_question();
         $ans = $qa->get_last_qt_var('answer');
-        $grade = qtype_sassessmentamazon_compare_answer($ans, $qa->get_question()->id);
+        $grade = qtype_sassessmentamz_compare_answer($ans, $qa->get_question()->id);
         $grade['gradePercent'] = $qa->get_last_qt_var('grade');
 
         $result = '';
@@ -402,26 +402,26 @@ require(["jquery"], function(min) {
 
         if (!empty($feedback)) {
             if (!is_numeric($grade['gradePercent'])) {
-                $feedback = get_string('teachergraded', 'qtype_sassessmentamazon');
+                $feedback = get_string('teachergraded', 'qtype_sassessmentamz');
             }
 
-            $result .= html_writer::tag('p', /*get_string('feedback', 'qtype_sassessmentamazon') . ": " .*/ $feedback);
+            $result .= html_writer::tag('p', /*get_string('feedback', 'qtype_sassessmentamz') . ": " .*/ $feedback);
         }
 
 /*
         if ($grade['gradePercent'] > 80) {
-            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamazon') . ": " . $qa->get_question()->correctfeedback);
+            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamz') . ": " . $qa->get_question()->correctfeedback);
         } else if ($grade['gradePercent'] > 30) {
-            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamazon') . ": " . $qa->get_question()->partiallycorrectfeedback);
+            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamz') . ": " . $qa->get_question()->partiallycorrectfeedback);
         } else {
-            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamazon') . ": " . $qa->get_question()->incorrectfeedback);
+            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamz') . ": " . $qa->get_question()->incorrectfeedback);
         }
 */
 
         /*
          * No need to show target response
          */
-        //$result .= html_writer::tag('p', get_string('targetresponsee', 'qtype_sassessmentamazon') . ": " . $grade['answer']);
+        //$result .= html_writer::tag('p', get_string('targetresponsee', 'qtype_sassessmentamz') . ": " . $grade['answer']);
 
         /*
          * Check user teacher role
@@ -430,7 +430,7 @@ require(["jquery"], function(min) {
         $isteacheranywhere = $DB->record_exists('role_assignments', ['userid' => $USER->id, 'roleid' => $roleid]);
 
         if ($question->show_transcript == 1) {
-            $result .= html_writer::tag('p', get_string('myanswer', 'qtype_sassessmentamazon') . ": " . $ans);
+            $result .= html_writer::tag('p', get_string('myanswer', 'qtype_sassessmentamz') . ": " . $ans);
 
             //$result .= html_writer::tag('style', "del{display:none}ins{color:red;background:#fdd;text-decoration:none}");
         }
@@ -456,12 +456,12 @@ require(["jquery"], function(min) {
             $diff = new FineDiff($from_str, $to_str, FineDiff::$wordGranularity);
             $rendered_diff = $diff->renderDiffToHTML();
 
-            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamazon') . ": " . $rendered_diff);
+            $result .= html_writer::tag('p', get_string('feedback', 'qtype_sassessmentamz') . ": " . $rendered_diff);
             $result .= html_writer::tag('style', "del{color:red;background:#fdd;text-decoration:none}ins{display:none}");
         }
 
         if (!empty($grade['answer'])) {
-            $result .= html_writer::tag('p', get_string('scoree', 'qtype_sassessmentamazon') . ": " . $grade['gradePercent']);
+            $result .= html_writer::tag('p', get_string('scoree', 'qtype_sassessmentamz') . ": " . $grade['gradePercent']);
         }
 
         $result .= html_writer::end_tag('div');
@@ -470,14 +470,14 @@ require(["jquery"], function(min) {
          * TMP disabled Analises report
          */
         if ($question->show_analysis == 1) {
-            $anl = qtype_sassessmentamazon_printanalizeform($ans);
+            $anl = qtype_sassessmentamz_printanalizeform($ans);
             unset($anl['laters']);
             $table = new html_table();
             $table->head = array('Analysis', 'Result');
             $table->data = array();
 
             foreach ($anl as $k => $v)
-                $table->data[] = array(get_string($k, 'qtype_sassessmentamazon'), $v);
+                $table->data[] = array(get_string($k, 'qtype_sassessmentamz'), $v);
 
             $result .= html_writer::table($table);
         }

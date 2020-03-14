@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Defines the editing form for the sassessmentamazon question type.
+ * Defines the editing form for the sassessmentamz question type.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -29,33 +29,33 @@ defined('MOODLE_INTERNAL') || die();
 
 
 /**
- * sassessmentamazon question editing form definition.
+ * sassessmentamz question editing form definition.
  *
  * @copyright  THEYEAR YOURNAME (YOURCONTACTINFO)
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qtype_sassessmentamazon_edit_form extends question_edit_form {
+class qtype_sassessmentamz_edit_form extends question_edit_form {
 
     protected function definition_inner($mform) {
-        $qtype = question_bank::get_qtype('sassessmentamazon');
+        $qtype = question_bank::get_qtype('sassessmentamz');
 
-        $config = get_config('qtype_sassessmentamazon');
+        $config = get_config('qtype_sassessmentamz');
 
-        $mform->addElement('checkbox', 'show_transcript', get_string('show_transcript', 'qtype_sassessmentamazon'));
-        $mform->addElement('checkbox', 'save_stud_audio', get_string('save_stud_audio', 'qtype_sassessmentamazon'));
-        $mform->addElement('checkbox', 'show_analysis', get_string('show_analysis', 'qtype_sassessmentamazon'));
+        $mform->addElement('checkbox', 'show_transcript', get_string('show_transcript', 'qtype_sassessmentamz'));
+        $mform->addElement('checkbox', 'save_stud_audio', get_string('save_stud_audio', 'qtype_sassessmentamz'));
+        $mform->addElement('checkbox', 'show_analysis', get_string('show_analysis', 'qtype_sassessmentamz'));
 
         $speechtotextlang = array( "en-US" => "US English (en-US)", "en-AU" => "Australian English (en-AU)", "en-GB" => "British English (en-GB)",
             "fr-CA" => "Canadian French (fr-CA)", "fr-FR" => "French (fr-FR)",
             "es-US" => "US Spanish (es-US)");
-        $mform->addElement('select', 'speechtotextlang', get_string('speechtotextlang', 'qtype_sassessmentamazon'), $speechtotextlang);
+        $mform->addElement('select', 'speechtotextlang', get_string('speechtotextlang', 'qtype_sassessmentamz'), $speechtotextlang);
         $mform->setDefault('speechtotextlang', $config->speechtotextlang);
 
 
         //
         $mform->addElement('select', 'fb_tyfb_typepe',
-                 get_string('fb_type', 'qtype_sassessmentamazon'), $qtype->feedback_types());
+                 get_string('fb_type', 'qtype_sassessmentamz'), $qtype->feedback_types());
 
         $mform->addElement('hidden', 'fb_type', 0);
 
@@ -70,7 +70,7 @@ class qtype_sassessmentamazon_edit_form extends question_edit_form {
     protected function get_per_answer_fields($mform, $label, $gradeoptions,
             &$repeatedoptions, &$answersoption) {
         $repeated = array();
-        $repeated[] = $mform->createElement('textarea', 'answer', get_string('comment', 'qtype_sassessmentamazon') . ' ' . $label, array('rows' => 3, 'cols' => 65), $this->editoroptions);
+        $repeated[] = $mform->createElement('textarea', 'answer', get_string('comment', 'qtype_sassessmentamz') . ' ' . $label, array('rows' => 3, 'cols' => 65), $this->editoroptions);
         //$repeated[] = $mform->createElement('textarea', 'feedback', get_string('feedback'), array('rows' => 1, 'cols' => 65), $this->editoroptions);
         // $repeatedoptions['answer']['type'] = PARAM_RAW;
         $answersoption = 'answers';
@@ -127,6 +127,6 @@ class qtype_sassessmentamazon_edit_form extends question_edit_form {
     }
 
     public function qtype() {
-        return 'sassessmentamazon';
+        return 'sassessmentamz';
     }
 }

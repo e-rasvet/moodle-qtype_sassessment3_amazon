@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Question type class for the sassessmentamazon question type.
+ * Question type class for the sassessmentamz question type.
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
@@ -26,7 +26,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-class backup_qtype_sassessmentamazon_plugin extends backup_qtype_plugin {
+class backup_qtype_sassessmentamz_plugin extends backup_qtype_plugin {
 
     /**
      * Returns the qtype information to attach to question element
@@ -34,7 +34,7 @@ class backup_qtype_sassessmentamazon_plugin extends backup_qtype_plugin {
     protected function define_question_plugin_structure() {
 
         // Define the virtual plugin element with the condition to fulfill.
-        $plugin = $this->get_plugin_element(null, '../../qtype', 'sassessmentamazon');
+        $plugin = $this->get_plugin_element(null, '../../qtype', 'sassessmentamz');
 
         // Create one standard named plugin element (the visible container).
         $pluginwrapper = new backup_nested_element($this->get_recommended_name());
@@ -47,15 +47,15 @@ class backup_qtype_sassessmentamazon_plugin extends backup_qtype_plugin {
         $this->add_question_question_answers($pluginwrapper);
 
         // Now create the qtype own structures.
-        $sassessmentamazon = new backup_nested_element('sassessmentamazon', array('id'), array(
+        $sassessmentamz = new backup_nested_element('sassessmentamz', array('id'), array(
             'show_transcript', 'save_stud_audio', 'show_analysis', 'correctfeedback', 'correctfeedbackformat', 'partiallycorrectfeedback',
             'partiallycorrectfeedbackformat', 'incorrectfeedback', 'incorrectfeedbackformat', 'speechtotextlang', 'fb_type'));
 
         // Now the own qtype tree.
-        $pluginwrapper->add_child($sassessmentamazon);
+        $pluginwrapper->add_child($sassessmentamz);
 
         // Set source to populate the data.
-        $sassessmentamazon->set_source_table('qtype_sassessmentamazon_options',
+        $sassessmentamz->set_source_table('qtype_sassessmentamz_options',
             array('questionid' => backup::VAR_PARENTID));
 
         // Don't need to annotate ids nor files.

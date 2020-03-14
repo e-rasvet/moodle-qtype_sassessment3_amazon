@@ -1,4 +1,4 @@
-Question type sassessmentamazon, Amazon Transcribe version
+Question type sassessmentamz, Amazon Transcribe version
 ----------------------
 
 It is Speech Assessment question type. You can add video questions with subtitles.
@@ -7,9 +7,9 @@ It is Speech Assessment question type. You can add video questions with subtitle
 
 ###Installation
 
-You can keep a copy of the sassessmentamazon in Moodle in the question/type/ folder and as long as it is called sassessmentamazon the plug in will
+You can keep a copy of the sassessmentamz in Moodle in the question/type/ folder and as long as it is called sassessmentamz the plug in will
 be ignored.
-Rename folder to "sassessmentamazon"
+Rename folder to "sassessmentamz"
 
 
 ####Installation Using Git 
@@ -17,16 +17,16 @@ Rename folder to "sassessmentamazon"
 To install using git for the latest version (the master branch), type this command in the
 root of your Moodle install:
 
-    git clone git://github.com/e-rasvet/moodle-qtype_sassessmentamazon.git question/type/sassessmentamazon
-    echo '/question/type/sassessmentamazon' >> .git/info/exclude
+    git clone git://github.com/e-rasvet/moodle-qtype_sassessmentamz.git question/type/sassessmentamz
+    echo '/question/type/sassessmentamz' >> .git/info/exclude
 
 ####Installation From Downloaded zip file
 
 Alternatively, download the zip from :
 
-* latest (master branch) - https://github.com/e-rasvet/moodle-qtype_sassessmentamazon/zipball/master
+* latest (master branch) - https://github.com/e-rasvet/moodle-qtype_sassessmentamz/zipball/master
 
-unzip it into the question/type folder, and then rename the new folder to sassessmentamazon.
+unzip it into the question/type folder, and then rename the new folder to sassessmentamz.
 
 ####How to get Amazon Transcribe Access key
 

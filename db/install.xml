@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<XMLDB PATH="question/type/sassessmentamazon/db" VERSION="2018080210" COMMENT="XMLDB file for Moodle question/type/sassessmentamazon"
+<XMLDB PATH="question/type/sassessmentamz/db" VERSION="2018080210" COMMENT="XMLDB file for Moodle question/type/sassessmentamz"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:noNamespaceSchemaLocation="../../../../lib/xmldb/xmldb.xsd"
 >
   <TABLES>
-    <TABLE NAME="qtype_sassessmentamazon_options" COMMENT="Extra options for sassessmentamazon questions.">
+    <TABLE NAME="qtype_sassessmentamz_options" COMMENT="Extra options for sassessmentamz questions.">
       <FIELDS>
         <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
         <FIELD NAME="questionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>

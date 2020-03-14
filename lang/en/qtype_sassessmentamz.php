@@ -15,20 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'qtype_sassessmentamazon', language 'en', branch 'MOODLE_20_STABLE'
+ * Strings for component 'qtype_sassessmentamz', language 'en', branch 'MOODLE_20_STABLE'
  *
  * @package    qtype
- * @subpackage sassessmentamazon
+ * @subpackage sassessmentamz
  * @copyright  2018 Kochi-Tech.ac.jp
 
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-$string['pluginname'] = 'sassessmentamazon';
+$string['pluginname'] = 'sassessmentamz';
 $string['pluginname_help'] = 'Create a cloze question type with embedded response fields in the question text to enter a numeric
 or text value or select a value from a number of options.';
-$string['pluginname_link'] = 'question/type/sassessmentamazon';
-$string['pluginnameadding'] = 'Adding a sassessmentamazon question';
-$string['pluginnameediting'] = 'Editing a sassessmentamazon question';
+$string['pluginname_link'] = 'question/type/sassessmentamz';
+$string['pluginnameadding'] = 'Adding a sassessmentamz question';
+$string['pluginnameediting'] = 'Editing a sassessmentamz question';
 $string['pluginnamesummary'] = 'The s-assessment question type allows students to give verbal responses to questions which can be
 automatically scored using voice recognition and speech to text.';
 
