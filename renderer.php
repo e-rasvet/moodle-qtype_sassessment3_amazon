@@ -364,9 +364,9 @@ require(["jquery"], function(min) {
     }
 
     public function specific_feedback(question_attempt $qa) {
-        global $DB, $USER;
-        
-        include_once "finediff.php";
+        global $DB, $USER, $CFG;
+
+        include_once $CFG->dirroot . "/question/type/sassessment/finediff.php";
 
         $question = $qa->get_question();
         $ans = $qa->get_last_qt_var('answer');
